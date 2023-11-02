@@ -1,0 +1,52 @@
+package com.automation.support;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
+
+import java.time.Duration;
+
+public class DriverUtils {
+
+    static WebDriver driver;
+
+    public static void createDriver() {
+        if (ConfigReader.getProperty("application.host").equalsIgnoreCase("local")) {
+            //   if (driver == null) {
+            switch (ConfigReader.getProperty("application.browser")) {
+                // since the test will execute on the local machine - having the browsers installed is a must, otherwise - this won't work
+                case "edge" -> {
+                    WebDriverManager.edgedriver().setup();
+                    driver = new EdgeDriver();
+                }
+                case "safari" -> {
+                    WebDriverManager.safaridriver().setup();
+                    driver = new SafariDriver();
+                }
+                case "firefox" -> {
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver();
+                }
+                default -> {
+                    // WebDriverManager essentially removes the need to manually manage any drivers
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+                }
+            }
+        }
+        driver.get(ConfigReader.getProperty("application.url"));
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    }
+
+
+    //This method simply returns the current WebDriver instance (driver).
+    //It allows other classes or methods in your automation framework to access the same WebDriver instance that was created by the createDriver method.
+    public static WebDriver getDriver() {
+        return driver;
+    }
+
+}
