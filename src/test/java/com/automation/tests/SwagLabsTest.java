@@ -44,8 +44,9 @@ public class SwagLabsTest extends BaseTest {
     public void cartPage() {
         cartPage.verifyFullCart();
         cartPage.verifyCheckOut();
-        //cartPage.verifyItemTotal();
+        cartPage.verifyItemTotal();
         cartPage.submittedPage();
+        landingPage.logout();
     }
 
 

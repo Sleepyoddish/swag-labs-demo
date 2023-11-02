@@ -112,7 +112,7 @@ public class CartPage extends BasePage {
     public void verifyCheckOut() {
         continueShoppingButton.click();
         String landingPageURL = driver.getCurrentUrl();
-        Assert.assertEquals(landingPageURL, "https://www.saucedemo.com/inventory.html");
+        Assert.assertEquals(landingPageURL, SwagLabsEnum.ALL_ITEMS_URL.getName());
         shoppingCartLink.click();
         checkoutButton.click();
         firstName.sendKeys("John");
@@ -139,35 +139,40 @@ public class CartPage extends BasePage {
         Assert.assertTrue(shippingInformationValue.isDisplayed());
         String shippingInfoValue = shippingInformationValue.getText();
         Assert.assertEquals(shippingInfoValue, SwagLabsEnum.SHIPPING_VALUE.getName());
+        Assert.assertTrue(priceTotal.isDisplayed());
+        String priceTotalValue = priceTotal.getText();
+        Assert.assertEquals(priceTotalValue, SwagLabsEnum.PRICE_TOTAL.getName());
+
     }
 
-//    public void verifyItemTotal() {
-//        double backpackCost = 29.99;
-//        double shirtCost = 15.99;
-//        double bikeLightCost = 9.99;
-//        double fleeceCost = 49.99;
-//        double onesieCost = 7.99;
-//        double sweaterCost = 15.99;
-//        double total = 0;
-//    
-//        if(Assert.assertTrue(backpackFinal.isDisplayed());){
-//            total = total + backpackCost;
-//        }
-//        if(Assert.assertTrue(shirtFinal.isDisplayed());){
-//            total = total + shirtCost;
-//        }
-//        if(Assert.assertTrue(bikelightFinal.isDisplayed());){
-//            total = total + bikeLightCost;
-//        }
-//        if (Assert.assertTrue(fleeceFinal.isDisplayed());){
-//            total = total + fleeceCost;
-//        }
-//        
+    public void verifyItemTotal() {
+        double[] itemCosts = {29.99, 15.99, 9.99, 49.99, 7.99, 15.99};
+        WebElement[] item = {backpackFinal, shirtFinal, bikelightFinal, fleeceFinal, onesieFinal, sweaterFinal};
+
+        double total = 0;
+
+        for (int i = 0; i < item.length; i++) {
+
+            if (item[i].isDisplayed()) {
+                total += itemCosts[i];
+            }
+        }
+
+        String totalString = Double.toString(total);
+        String itemTotaled = itemTotal.getText();
+        Assert.assertTrue(itemTotaled.contains(totalString));
+
+//        double tax = total * .08;
+//        String taxString = Double.toString(tax);
+//        String itemTax = taxTotal.getText();
+//        Assert.assertTrue(itemTax.contains(taxString));
 //
-//        String totalString = Double.toString(total);
-//        String itemTotaled = itemTotal.getText();
-//        Assert.assertTrue(itemTotaled.contains(totalString));
-//    }
+//        double totalPlusTax = total + tax;
+//        String totalPlusTaxString = Double.toString(totalPlusTax);
+//        String itemTotalPlusTax = finalTotal.getText();
+//        Assert.assertTrue(itemTotalPlusTax.contains(totalPlusTaxString));
+
+    }
 
     public void submittedPage() {
         finishButton.click();
