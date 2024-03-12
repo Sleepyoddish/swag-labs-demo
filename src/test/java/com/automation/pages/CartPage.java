@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import java.text.DecimalFormat;
+
 
 public class CartPage extends BasePage {
 
@@ -162,15 +164,16 @@ public class CartPage extends BasePage {
         String itemTotaled = itemTotal.getText();
         Assert.assertTrue(itemTotaled.contains(totalString));
 
-//        double tax = total * .08;
-//        String taxString = Double.toString(tax);
-//        String itemTax = taxTotal.getText();
-//        Assert.assertTrue(itemTax.contains(taxString));
-//
-//        double totalPlusTax = total + tax;
-//        String totalPlusTaxString = Double.toString(totalPlusTax);
-//        String itemTotalPlusTax = finalTotal.getText();
-//        Assert.assertTrue(itemTotalPlusTax.contains(totalPlusTaxString));
+        DecimalFormat df = new DecimalFormat("#.##");
+        double tax = Double.parseDouble(df.format(total * .08));
+        String taxString = Double.toString(tax);
+        String itemTax = taxTotal.getText();
+        Assert.assertTrue(itemTax.contains(taxString));
+
+        double totalPlusTax = total + tax;
+        String totalPlusTaxString = Double.toString(totalPlusTax);
+        String itemTotalPlusTax = finalTotal.getText();
+        Assert.assertTrue(itemTotalPlusTax.contains(totalPlusTaxString));
 
     }
 
