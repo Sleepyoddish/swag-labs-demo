@@ -1,5 +1,6 @@
 package com.automation.support;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -12,8 +13,7 @@ public class DriverUtils {
     public static void createDriver() {
         if (ConfigReader.getProperty("application.host").equalsIgnoreCase("local")) {
             if (driver == null) {
-                String chromeDriverPath = ConfigReader.getProperty("chromedriver.path");
-                System.setProperty("chromedriver.path", chromeDriverPath);
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
             }
 
