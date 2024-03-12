@@ -65,7 +65,7 @@ public enum SwagLabsEnum {
     TWITTER_URL("https://twitter.com/saucelabs"),
     FACEBOOK_URL("https://www.facebook.com/saucelabs"),
     LINKEDIN_URL("https://www.linkedin.com/company/sauce-labs/"),
-    FOOTER_COPY("© 2023 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy"),
+    FOOTER_COPY("© 2024 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy"),
 
     //CART AND CHECKOUT
     PAYMENT_INFORMATION("Payment Information"),
