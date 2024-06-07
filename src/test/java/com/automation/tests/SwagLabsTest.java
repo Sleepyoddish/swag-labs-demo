@@ -26,7 +26,6 @@ public class SwagLabsTest extends BaseTest {
     public void landingPage() {
         landingPage.verifyTitles();
         landingPage.verifyHamburgerMenu();
-        //landingPage.verifySorting();
     }
 
     @Test(priority = 4, dataProvider = "products")
@@ -65,19 +64,19 @@ public class SwagLabsTest extends BaseTest {
         };
     }
 
-//    @Test(priority = 6)
-//    public void footer() {
-//        landingPage.verifyFooter();
-//    }
+    @Test(priority = 6)
+    public void footer() {
+        landingPage.verifyFooter();
+    }
 
-//    @Test(priority = 7)
-//    public void cartPage() {
-//        cartPage.verifyFullCart();
-//        cartPage.verifyCheckOut();
-//        cartPage.verifyItemTotal();
-//        cartPage.submittedPage();
-//        landingPage.logout();
-//    }
+    @Test(priority = 7)
+    public void cartPage() {
+        cartPage.verifyFullCart();
+        cartPage.verifyCheckOut();
+        cartPage.verifyItemTotal();
+        cartPage.submittedPage();
+        landingPage.logout();
+    }
 
 
 }
