@@ -17,7 +17,6 @@ public class LandingPage extends BasePage {
     public void verifyTitles() {
         Assert.assertEquals(driver.findElement(By.cssSelector(".app_logo")).getText(), LandingEnum.APP_LOGO.getName());
         Assert.assertEquals(driver.findElement(By.cssSelector(".title")).getText(), LandingEnum.PAGE_TITLE.getName());
-
     }
 
     public void verifyHamburgerMenu() {
