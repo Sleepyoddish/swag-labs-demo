@@ -203,16 +203,21 @@ public class LandingPage extends BasePage {
     public void verifyProducts(By addLink, ProductEnum item, By removeLink, By image, By button, By title, By desc, By price) {
         WebElement itemLink = driver.findElement(addLink);
         WebElement removalLink = driver.findElement(removeLink);
+        WebElement imageLink = driver.findElement(image);
+        WebElement buttonLink = driver.findElement(button);
+        WebElement titleLink = driver.findElement(title);
+        WebElement description = driver.findElement(desc);
+        WebElement priceDesc = driver.findElement(price);
         itemLink.click();
         Assert.assertTrue(shoppingCartBadge.isDisplayed());
         Assert.assertEquals(shoppingCartBadge.getText(), "1");
         removalLink.click();
         wait.until(ExpectedConditions.invisibilityOf(shoppingCartBadge));
-        Assert.assertTrue((backpackImage.isDisplayed()));
-        Assert.assertTrue(backpackButton.isDisplayed());
-        Assert.assertEquals(backpackTitle.getText(), item.getTitle());
-        Assert.assertEquals(backpackDescription.getText(), item.getDescription());
-        Assert.assertEquals(backpackPrice.getText(), item.getPrice());
+        Assert.assertTrue((imageLink.isDisplayed()));
+        Assert.assertTrue(buttonLink.isDisplayed());
+        Assert.assertEquals(titleLink.getText(), item.getTitle());
+        Assert.assertEquals(description.getText(), item.getDescription());
+        Assert.assertEquals(priceDesc.getText(), item.getPrice());
     }
 
     public void verifyAddItems() {
