@@ -1,6 +1,7 @@
 package com.automation.pages;
 
-import com.automation.support.SwagLabsEnum;
+import com.automation.support.CartSubmitEnum;
+import com.automation.support.LandingEnum;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -107,14 +108,12 @@ public class CartPage extends BasePage {
         Assert.assertTrue(fleece.isDisplayed());
         Assert.assertTrue(onesie.isDisplayed());
         Assert.assertTrue(sweater.isDisplayed());
-        String shoppingCartBadge6 = shoppingCartBadge.getText();
-        Assert.assertEquals(shoppingCartBadge6, "6");
+        Assert.assertEquals(shoppingCartBadge.getText(), "6");
     }
 
     public void verifyCheckOut() {
         continueShoppingButton.click();
-        String landingPageURL = driver.getCurrentUrl();
-        Assert.assertEquals(landingPageURL, SwagLabsEnum.ALL_ITEMS_URL.getName());
+        Assert.assertEquals(driver.getCurrentUrl(), LandingEnum.ALL_ITEMS_URL.getName());
         shoppingCartLink.click();
         checkoutButton.click();
         firstName.sendKeys("John");
@@ -127,23 +126,18 @@ public class CartPage extends BasePage {
         Assert.assertTrue(fleeceFinal.isDisplayed());
         Assert.assertTrue(onesieFinal.isDisplayed());
         Assert.assertTrue(sweaterFinal.isDisplayed());
-        String shoppingCartBadge6 = shoppingCartBadge.getText();
-        Assert.assertEquals(shoppingCartBadge6, "6");
+        Assert.assertEquals(shoppingCartBadge.getText(), "6");
         Assert.assertTrue(paymentInformationTitle.isDisplayed());
-        String paymentInfoTitle = paymentInformationTitle.getText();
-        Assert.assertEquals(paymentInfoTitle, SwagLabsEnum.PAYMENT_INFORMATION.getName());
+        Assert.assertEquals(paymentInformationTitle.getText(), CartSubmitEnum.PAYMENT_INFORMATION.getName());
         Assert.assertTrue(paymentInformationValue.isDisplayed());
-        String paymentInfoValue = paymentInformationValue.getText();
-        Assert.assertEquals(paymentInfoValue, SwagLabsEnum.PAYMENT_VALUE.getName());
+        Assert.assertEquals(paymentInformationValue.getText(), CartSubmitEnum.PAYMENT_VALUE.getName());
         Assert.assertTrue(shippingInformationTitle.isDisplayed());
-        String shippingInfoTitle = shippingInformationTitle.getText();
-        Assert.assertEquals(shippingInfoTitle, SwagLabsEnum.SHIPPING_INFORMATION.getName());
+        Assert.assertEquals(shippingInformationTitle.getText(), CartSubmitEnum.SHIPPING_INFORMATION.getName());
         Assert.assertTrue(shippingInformationValue.isDisplayed());
-        String shippingInfoValue = shippingInformationValue.getText();
-        Assert.assertEquals(shippingInfoValue, SwagLabsEnum.SHIPPING_VALUE.getName());
+        Assert.assertEquals(shippingInformationValue.getText(), CartSubmitEnum.SHIPPING_VALUE.getName());
         Assert.assertTrue(priceTotal.isDisplayed());
-        String priceTotalValue = priceTotal.getText();
-        Assert.assertEquals(priceTotalValue, SwagLabsEnum.PRICE_TOTAL.getName());
+        Assert.assertEquals(priceTotal.getText(), CartSubmitEnum.PRICE_TOTAL.getName());
+
 
     }
 
@@ -161,36 +155,29 @@ public class CartPage extends BasePage {
         }
 
         String totalString = Double.toString(total);
-        String itemTotaled = itemTotal.getText();
-        Assert.assertTrue(itemTotaled.contains(totalString));
+        Assert.assertTrue(itemTotal.getText().contains(totalString));
 
         DecimalFormat df = new DecimalFormat("#.##");
         double tax = Double.parseDouble(df.format(total * .08));
         String taxString = Double.toString(tax);
-        String itemTax = taxTotal.getText();
-        Assert.assertTrue(itemTax.contains(taxString));
+        Assert.assertTrue(taxTotal.getText().contains(taxString));
 
         double totalPlusTax = total + tax;
         String totalPlusTaxString = Double.toString(totalPlusTax);
-        String itemTotalPlusTax = finalTotal.getText();
-        Assert.assertTrue(itemTotalPlusTax.contains(totalPlusTaxString));
+        Assert.assertTrue(finalTotal.getText().contains(totalPlusTaxString));
 
     }
 
     public void submittedPage() {
         finishButton.click();
         Assert.assertTrue(title.isDisplayed());
-        String submittedTitle = title.getText();
-        Assert.assertEquals(submittedTitle, SwagLabsEnum.SUBMITTED_TITLE.getName());
+        Assert.assertEquals(title.getText(), CartSubmitEnum.SUBMITTED_TITLE.getName());
         Assert.assertTrue(ponyExpressImage.isDisplayed());
         Assert.assertTrue(completeHeader.isDisplayed());
-        String complete = completeHeader.getText();
-        Assert.assertEquals(complete, SwagLabsEnum.THANK_YOU.getName());
+        Assert.assertEquals(completeHeader.getText(), CartSubmitEnum.THANK_YOU.getName());
         Assert.assertTrue(completeText.isDisplayed());
-        String completedText = completeText.getText();
-        Assert.assertEquals(completedText, SwagLabsEnum.ORDER_TEXT.getName());
+        Assert.assertEquals(completeText.getText(), CartSubmitEnum.ORDER_TEXT.getName());
         backHomeButton.click();
-        String homePageURL = driver.getCurrentUrl();
-        Assert.assertEquals(homePageURL, SwagLabsEnum.ALL_ITEMS_URL.getName());
+        Assert.assertEquals(driver.getCurrentUrl(), LandingEnum.ALL_ITEMS_URL.getName());
     }
 }

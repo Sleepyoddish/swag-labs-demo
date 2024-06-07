@@ -1,8 +1,9 @@
 package com.automation.pages;
 
-import com.automation.support.SwagLabsEnum;
+import com.automation.support.LoginEnum;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class LoginPage extends BasePage {
@@ -21,12 +22,13 @@ public class LoginPage extends BasePage {
     WebElement loginPassword;
     @FindBy(css = ".error-message-container")
     WebElement errorMessage;
+    @FindBy(css = ".title")
+    WebElement productsTitle;
 
 
     public void checkPageTitleText() {
         Assert.assertTrue(header.isDisplayed());
-        String headerText = header.getText();
-        Assert.assertEquals(headerText, SwagLabsEnum.LOGIN_HEADER.getName());
+        Assert.assertEquals(header.getText(), LoginEnum.LOGIN_HEADER.getName());
     }
 
     public void verifyLoginCredentials() {
@@ -36,9 +38,10 @@ public class LoginPage extends BasePage {
 
     public void loginStandardUser() {
         usernameField.sendKeys("standard_user");
+        passwordField.sendKeys("secret_sauce");
         loginButton.click();
-        String landingPageURL = driver.getCurrentUrl();
-        Assert.assertEquals(landingPageURL, "https://www.saucedemo.com/inventory.html");
+        wait.until(ExpectedConditions.visibilityOf(productsTitle));
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
     }
 
     public void loginLockedOutUser() {
@@ -46,7 +49,7 @@ public class LoginPage extends BasePage {
         passwordField.sendKeys("secret_sauce");
         loginButton.click();
         Assert.assertTrue(errorMessage.isDisplayed());
-        usernameField.clear();
+        driver.navigate().refresh();
 
     }
 
