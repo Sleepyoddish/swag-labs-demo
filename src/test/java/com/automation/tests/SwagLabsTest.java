@@ -1,8 +1,12 @@
 package com.automation.tests;
 
+import com.automation.support.ProductEnum;
+import org.openqa.selenium.By;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class SwagLabsTest extends BaseTest {
+
 
     @Test(priority = 1)
     public void LoginWithLockedOutUser() {
@@ -22,32 +26,58 @@ public class SwagLabsTest extends BaseTest {
     public void landingPage() {
         landingPage.verifyTitles();
         landingPage.verifyHamburgerMenu();
+        //landingPage.verifySorting();
     }
 
-    @Test(priority = 4)
-    public void productPage() {
-        landingPage.verifyBackpack();
-        landingPage.verifyBikeLight();
-        landingPage.verifyTShirt();
-        landingPage.verifyFleece();
-        landingPage.verifyOnesie();
-        landingPage.verifySweater();
+    @Test(priority = 4, dataProvider = "products")
+    public void productPage(By addLink, ProductEnum item, By removeLink) {
+        landingPage.verifyProducts(addLink, item, removeLink);
         landingPage.verifyAddItems();
     }
 
-    @Test(priority = 5)
-    public void footer() {
-        landingPage.verifyFooter();
+    @DataProvider(name = "products")
+    public Object[][] createProducts() {
+        return new Object[][]{
+                {By.id("add-to-cart-sauce-labs-backpack"), ProductEnum.BACKPACK, By.id("remove-sauce-labs-backpack")},
+                {By.id("add-to-cart-sauce-labs-bike-light"), ProductEnum.BIKE, By.id("remove-sauce-labs-bike-light")},
+                {By.id("add-to-cart-sauce-labs-bolt-t-shirt"), ProductEnum.SHIRT, By.id("remove-sauce-labs-bolt-t-shirt")},
+                {By.id("add-to-cart-sauce-labs-fleece-jacket"), ProductEnum.FLEECE, By.id("remove-sauce-labs-fleece-jacket")},
+                {By.id("add-to-cart-sauce-labs-onesie"), ProductEnum.ONESIE, By.id("remove-sauce-labs-onesie")},
+                {By.id("add-to-cart-test.allthethings()-t-shirt-(red)"), ProductEnum.SWEATER, By.id("remove-sauce-labs-test.allthethings()-t-shirt-(red)")}
+        };
     }
 
-    @Test(priority = 6)
-    public void cartPage() {
-        cartPage.verifyFullCart();
-        cartPage.verifyCheckOut();
-        cartPage.verifyItemTotal();
-        cartPage.submittedPage();
-        landingPage.logout();
+
+    @Test(priority = 5, dataProvider = "individualProducts")
+    public void individualProductPage(By link, ProductEnum product) {
+        productPage.verifyProductPage(link, product);
     }
+
+    @DataProvider(name = "individualProducts")
+    public Object[][] createIndividualProducts() {
+        return new Object[][]{
+                {By.id("item_4_img_link"), ProductEnum.BACKPACK},
+                {By.id("item_0_img_link"), ProductEnum.BIKE},
+                {By.id("item_1_img_link"), ProductEnum.SHIRT},
+                {By.id("item_5_img_link"), ProductEnum.FLEECE},
+                {By.id("item_2_img_link"), ProductEnum.ONESIE},
+                {By.id("item_3_img_link"), ProductEnum.SWEATER}
+        };
+    }
+
+//    @Test(priority = 6)
+//    public void footer() {
+//        landingPage.verifyFooter();
+//    }
+
+//    @Test(priority = 7)
+//    public void cartPage() {
+//        cartPage.verifyFullCart();
+//        cartPage.verifyCheckOut();
+//        cartPage.verifyItemTotal();
+//        cartPage.submittedPage();
+//        landingPage.logout();
+//    }
 
 
 }
