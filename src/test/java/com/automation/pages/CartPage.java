@@ -18,10 +18,10 @@ public class CartPage extends BasePage {
     WebElement shoppingCartBadge;
 
     //CART PRODUCTS
-    @FindBy(xpath = "//*[@id=\"cart_contents_container\"]/div/div[1]/div[3]")
+    @FindBy(xpath = "/html/body/div/div/div/div[2]/div/div[1]/div[3]")
     WebElement backpack;
 
-    @FindBy(xpath = "//*[@id=\"cart_contents_container\"]/div/div[1]/div[4]")
+    @FindBy(xpath = "/html/body/div/div/div/div[2]/div/div[1]/div[4]")
     WebElement shirt;
 
     @FindBy(xpath = "//*[@id=\"cart_contents_container\"]/div/div[1]/div[5]")

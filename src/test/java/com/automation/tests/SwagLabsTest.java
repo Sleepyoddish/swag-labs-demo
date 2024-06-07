@@ -30,8 +30,8 @@ public class SwagLabsTest extends BaseTest {
     }
 
     @Test(priority = 4, dataProvider = "products")
-    public void productPage(By addLink, ProductEnum item, By removeLink, By image, By button, By title, By desc, By price) {
-        landingPage.verifyProducts(addLink, item, removeLink, image, button, title, desc, price);
+    public void productPage(By addLink, ProductEnum item, By removeLink, By image, By title, By desc, By price) {
+        landingPage.verifyProducts(addLink, item, removeLink, image, title, desc, price);
         landingPage.verifyAddItems();
     }
 
