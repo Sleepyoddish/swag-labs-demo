@@ -30,20 +30,20 @@ public class SwagLabsTest extends BaseTest {
     }
 
     @Test(priority = 4, dataProvider = "products")
-    public void productPage(By addLink, ProductEnum item, By removeLink) {
-        landingPage.verifyProducts(addLink, item, removeLink);
+    public void productPage(By addLink, ProductEnum item, By removeLink, By image, By button, By title, By desc, By price) {
+        landingPage.verifyProducts(addLink, item, removeLink, image, button, title, desc, price);
         landingPage.verifyAddItems();
     }
 
     @DataProvider(name = "products")
     public Object[][] createProducts() {
         return new Object[][]{
-                {By.id("add-to-cart-sauce-labs-backpack"), ProductEnum.BACKPACK, By.id("remove-sauce-labs-backpack")},
-                {By.id("add-to-cart-sauce-labs-bike-light"), ProductEnum.BIKE, By.id("remove-sauce-labs-bike-light")},
-                {By.id("add-to-cart-sauce-labs-bolt-t-shirt"), ProductEnum.SHIRT, By.id("remove-sauce-labs-bolt-t-shirt")},
-                {By.id("add-to-cart-sauce-labs-fleece-jacket"), ProductEnum.FLEECE, By.id("remove-sauce-labs-fleece-jacket")},
-                {By.id("add-to-cart-sauce-labs-onesie"), ProductEnum.ONESIE, By.id("remove-sauce-labs-onesie")},
-                {By.id("add-to-cart-test.allthethings()-t-shirt-(red)"), ProductEnum.SWEATER, By.id("remove-sauce-labs-test.allthethings()-t-shirt-(red)")}
+                {By.id("add-to-cart-sauce-labs-backpack"), ProductEnum.BACKPACK, By.id("remove-sauce-labs-backpack"), By.id("item_4_img_link"), By.id("item_4_title_link"), By.xpath("//*[@id=\"inventory_container\"]/div/div[1]/div[2]/div[1]/div"), By.xpath("//*[@id=\"inventory_container\"]/div/div[1]/div[2]/div[2]/div")},
+                {By.id("add-to-cart-sauce-labs-bike-light"), ProductEnum.BIKE, By.id("remove-sauce-labs-bike-light"), By.id("item_0_img_link"), By.id("item_0_title_link"), By.xpath("//*[@id=\"inventory_container\"]/div/div[2]/div[2]/div[1]/div"), By.xpath("//*[@id=\"inventory_container\"]/div/div[2]/div[2]/div[2]/div")},
+                {By.id("add-to-cart-sauce-labs-bolt-t-shirt"), ProductEnum.SHIRT, By.id("remove-sauce-labs-bolt-t-shirt"), By.id("item_1_img_link"), By.id("item_1_title_link"), By.xpath("//*[@id=\"inventory_container\"]/div/div[3]/div[2]/div[1]/div"), By.xpath("//*[@id=\"inventory_container\"]/div/div[3]/div[2]/div[2]/div")},
+                {By.id("add-to-cart-sauce-labs-fleece-jacket"), ProductEnum.FLEECE, By.id("remove-sauce-labs-fleece-jacket"), By.id("item_5_img_link"), By.id("item_5_title_link"), By.xpath("//*[@id=\"inventory_container\"]/div/div[4]/div[2]/div[1]/div"), By.xpath("//*[@id=\"inventory_container\"]/div/div[4]/div[2]/div[2]/div")},
+                {By.id("add-to-cart-sauce-labs-onesie"), ProductEnum.ONESIE, By.id("remove-sauce-labs-onesie"), By.id("item_2_img_link"), By.id("item_2_title_link"), By.xpath("//*[@id=\"inventory_container\"]/div/div[5]/div[2]/div[1]/div"), By.xpath("//*[@id=\"inventory_container\"]/div/div[5]/div[2]/div[2]/div")},
+                {By.id("add-to-cart-test.allthethings()-t-shirt-(red)"), ProductEnum.SWEATER, By.id("remove-sauce-labs-test.allthethings()-t-shirt-(red)"), By.id("#tem_3_img_link"), By.id("item_3_title_link"), By.xpath("//*[@id=\"inventory_container\"]/div/div[6]/div[2]/div[1]/div"), By.xpath("//*[@id=\"inventory_container\"]/div/div[6]/div[2]/div[2]/div")}
         };
     }
 
