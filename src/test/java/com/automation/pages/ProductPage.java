@@ -28,6 +28,5 @@ public class ProductPage extends BasePage {
         wait.until(ExpectedConditions.invisibilityOf(shoppingCartBadge));
         Assert.assertTrue(addButton.isDisplayed());
         driver.findElement(By.cssSelector("#back-to-products")).click();
-
     }
 }
