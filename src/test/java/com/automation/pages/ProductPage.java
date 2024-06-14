@@ -8,8 +8,6 @@ import org.testng.Assert;
 
 public class ProductPage extends BasePage {
 
-    BasePage basepage = new BasePage();
-
     public void verifyProductPage(By link, ProductEnum product) {
         driver.findElement(link).click();
         Assert.assertEquals(driver.getCurrentUrl(), product.getUrl());
@@ -17,16 +15,18 @@ public class ProductPage extends BasePage {
         Assert.assertEquals(driver.findElement(By.cssSelector(".inventory_details_name")).getText(), product.getTitle());
         Assert.assertEquals(driver.findElement(By.cssSelector(".inventory_details_desc")).getText(), product.getDescription());
         Assert.assertEquals(driver.findElement(By.cssSelector(".inventory_details_price")).getText(), product.getPrice());
-        WebElement addButton = driver.findElement(By.cssSelector("#add-to-cart"));
+        WebElement actionButton = driver.findElement(By.cssSelector("#add-to-cart"));
         Assert.assertEquals(driver.findElement(By.cssSelector("#add-to-cart")).getText(), product.getButton());
-        addButton.click();
+        actionButton.click();
         WebElement shoppingCartBadge = driver.findElement(By.cssSelector(".shopping_cart_badge"));
         Assert.assertTrue(shoppingCartBadge.isDisplayed());
         Assert.assertEquals(shoppingCartBadge.getText(), "1");
-        WebElement removeButton = driver.findElement(By.cssSelector("#remove"));
-        removeButton.click();
+        driver.navigate().refresh();
+        actionButton = driver.findElement(By.cssSelector("#remove"));
+        actionButton.click();
         wait.until(ExpectedConditions.invisibilityOf(shoppingCartBadge));
-        Assert.assertTrue(addButton.isDisplayed());
+        actionButton = driver.findElement(By.cssSelector("#add-to-cart"));
+        Assert.assertTrue(actionButton.isDisplayed());
         driver.findElement(By.cssSelector("#back-to-products")).click();
     }
 }
