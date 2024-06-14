@@ -3,14 +3,14 @@ package com.automation.support;
 public enum CartSubmitEnum {
 
     //CART AND CHECKOUT
-    PAYMENT_INFORMATION("Payment Information"),
+    PAYMENT_INFORMATION("Payment Information:"),
     PAYMENT_VALUE("SauceCard #31337"),
-    SHIPPING_INFORMATION("Shipping Information"),
+    SHIPPING_INFORMATION("Shipping Information:"),
     SHIPPING_VALUE("Free Pony Express Delivery!"),
     PRICE_TOTAL("Price Total"),
-    ITEM_TOTAL("Item total: $129.94"),
-    TAX("Tax: $10.40"),
-    TOTAL("Total: $140.34"),
+    ITEM_TOTAL_VALUE("Item total: $129.94"),
+    TAX_TOTAL_VALUE("Tax: $10.40"),
+    TOTAL_VALUE("Total: $140.34"),
 
     //SUBMITTED PAGE
     SUBMITTED_TITLE("Checkout: Complete!"),
@@ -19,13 +19,11 @@ public enum CartSubmitEnum {
 
     private String name;
 
-    public String getName() {
-        return name;
+    CartSubmitEnum(String name) {
+        this.name = name;
     }
 
-    CartSubmitEnum(String name) {
-        this.name = name();
-
-
+    public String getName() {
+        return name;
     }
 }
