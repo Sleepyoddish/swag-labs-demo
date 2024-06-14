@@ -31,7 +31,7 @@ public class BaseTest {
 
     @AfterClass
     public void cleanUp() {
-        DriverUtils.getDriver().close();
+        DriverUtils.getDriver().quit();
     }
 
 }
