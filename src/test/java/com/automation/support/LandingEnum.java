@@ -16,7 +16,7 @@ public enum LandingEnum {
     RESET_BUTTON("Reset App State"),
 
     //FOOTER
-    TWITTER_URL("https://twitter.com/saucelabs"),
+    TWITTER_URL("https://x.com/saucelabs"),
     FACEBOOK_URL("https://www.facebook.com/saucelabs"),
     LINKEDIN_URL("https://www.linkedin.com/company/sauce-labs/"),
     FOOTER_COPY("© 2024 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy");
