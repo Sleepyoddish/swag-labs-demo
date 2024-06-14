@@ -50,6 +50,11 @@
             <version>2.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>dev.slifer</groupId>
+            <artifactId>webdriver-sizzle-injector</artifactId>
+            <version>4.20.0-R1</version>
+        </dependency>
 
     </dependencies>
     <build>
